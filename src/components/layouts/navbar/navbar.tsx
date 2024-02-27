@@ -4,12 +4,12 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Link } from 'react-router-dom';
 
-import { Container } from '../page-container';
+import { Container } from '../../page-container';
 import { NavbarToggle } from './navbar-toggle';
 import NavbarSearch from './navbar-search';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
+import Logo from '../../logo';
 
-import logo from '@/assets/company-logo.svg';
 import search from '@/assets/search.svg';
 import { navLinks } from '@/lib/constants';
 import { listVariants, sideVariants } from '@/lib/framer-variants';
@@ -40,8 +40,8 @@ export const Navbar: React.FC = () => {
         )}
       >
         <section className='w-full grid sm:grid-cols-navbar items-center gap-4'>
-          <Link to='/'>
-            <img src={logo} />
+          <Link to='/' className='text-primary'>
+            <Logo wrapperStyles={'text-primary'} />
           </Link>
           <NavbarSearch />
           <Button className='hidden sm:block'>
