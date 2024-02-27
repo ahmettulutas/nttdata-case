@@ -1,19 +1,16 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+
+import { productsApi } from '../api';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [productsApi.reducerPath]: productsApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false })
-      .concat
-      /* productsApi.middleware */
-      (),
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(productsApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
