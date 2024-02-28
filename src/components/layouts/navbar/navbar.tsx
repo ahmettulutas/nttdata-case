@@ -39,33 +39,38 @@ export const Navbar: React.FC = () => {
           scrolled ? '' : 'py-6'
         )}
       >
-        <section className='w-full grid sm:grid-cols-navbar items-center gap-4'>
+        <section className='w-full grid md:grid-cols-navbar items-center gap-4'>
           <Link to='/' className='text-primary'>
             <Logo wrapperStyles={'text-primary'} />
           </Link>
           <NavbarSearch />
-          <Button className='hidden sm:block'>
+          <Button className='hidden md:block'>
             <img src={search} />
           </Button>
         </section>
 
-        <div className='z-20 md:hidden absolute right-4 top-10'>
+        <div className='z-20 md:hidden absolute right-4 top-[-1/2]'>
           <NavbarToggle open={open} toggle={() => setOpen(!open)} />
         </div>
       </Container>
       <section className='border-t'>
         <Container>
           <ul className='gap-2 hidden md:flex w-full justify-between pt-4 pb-2'>
-            {navLinks.map((item) => (
-              <li key={item.id}>
-                <Link
-                  to={item.id}
-                  className={`h-full block relative mx-auto ${scrolled ? 'before:h-1' : ' before:h-0.25'}`}
-                >
-                  {item.text}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map(
+              (
+                { text, id },
+                idx // since navlinks items don't have any unique value ım using idx here
+              ) => (
+                <li key={idx}>
+                  <Link
+                    to={id}
+                    className={`h-full block relative mx-auto ${scrolled ? 'before:h-1' : ' before:h-0.25'}`}
+                  >
+                    {text}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
           {/* Mobile Sidebar */}
           <AnimatePresence>
@@ -75,7 +80,7 @@ export const Navbar: React.FC = () => {
                   onClick={() => setOpen(false)}
                   className='backdrop-blur-[1px] absolute left-0 top-0 h-screen p-4 w-screen'
                 />
-                <aside className='md:hidden bg-white shadow-md absolute right-0 top-0 overflow-y-scroll p-4 max-w-[50vw]'>
+                <aside className='md:hidden bg-white shadow-md absolute right-0 top-0 overflow-y-scroll p-4 max-w-[50vw] h-screen'>
                   <motion.ul
                     className='mt-24'
                     initial='closed'
@@ -83,16 +88,21 @@ export const Navbar: React.FC = () => {
                     exit='closed'
                     variants={sideVariants}
                   >
-                    {navLinks.map(({ text, id }) => (
-                      <motion.li
-                        className='border-b py-3 px-3 text-center'
-                        key={id}
-                        whileHover={{ scale: 1.1 }}
-                        variants={listVariants}
-                      >
-                        <Link to={id}>{text}</Link>
-                      </motion.li>
-                    ))}
+                    {navLinks.map(
+                      (
+                        { text, id },
+                        idx // since navlinks items don't have any unique value ım using idx here
+                      ) => (
+                        <motion.li
+                          className='border-b py-3 px-3 text-center'
+                          key={idx}
+                          whileHover={{ scale: 1.1 }}
+                          variants={listVariants}
+                        >
+                          <Link to={id}>{text}</Link>
+                        </motion.li>
+                      )
+                    )}
                   </motion.ul>
                 </aside>
               </div>

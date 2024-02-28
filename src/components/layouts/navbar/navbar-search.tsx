@@ -27,7 +27,7 @@ export default function NavbarSearch() {
           <SelectItem value='category4'>Category 4</SelectItem>
         </SelectContent>
       </Select>
-      <Button className='block absolute right-0 w-auto translate-y-[-50%] top-1/2 md:hidden rounded-l-none'>
+      <Button className='absolute right-0 translate-y-[-50%] top-1/2 md:hidden rounded-l-none'>
         <img src={search} />
       </Button>
     </div>
