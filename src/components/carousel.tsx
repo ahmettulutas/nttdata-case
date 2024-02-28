@@ -21,7 +21,7 @@ export type CarouselProps = (ImageCarousel | NodeCarousel) & {
   speed?: number;
 };
 
-export const Carousel: React.FC<CarouselProps> = (props) => {
+const Carousel: React.FC<CarouselProps> = (props) => {
   const { imageCarousel, loop, showDots, speed } = props;
 
   const [current, setCurrent] = React.useState(0);
@@ -51,13 +51,13 @@ export const Carousel: React.FC<CarouselProps> = (props) => {
   }, [paginate, loop, speed]);
 
   return (
-    <div className='relative aspect-video flex justify-center items-center overflow-hidden'>
+    <div className='relative aspect-square md:aspect-video flex justify-center items-center max-h-[75vh] w-full'>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={current}
           custom={direction}
           variants={carouselVariants}
-          className='w-full h-full absolute'
+          className='top-0 left-0 right-0 bottom-0 absolute'
           initial='enter'
           animate='center'
           exit='exit'
@@ -67,7 +67,7 @@ export const Carousel: React.FC<CarouselProps> = (props) => {
           }}
         >
           {imageCarousel ? (
-            <img className='aspect-video' src={props.images[current]} />
+            <img className='w-full h-full' src={props.images[current]} />
           ) : (
             props.carouselItems[current]
           )}
@@ -79,3 +79,4 @@ export const Carousel: React.FC<CarouselProps> = (props) => {
     </div>
   );
 };
+export default React.memo(Carousel);

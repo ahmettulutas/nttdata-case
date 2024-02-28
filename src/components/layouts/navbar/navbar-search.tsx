@@ -9,7 +9,7 @@ import {
   Select,
 } from '@/components/ui/select';
 import search from '@/assets/search.svg';
-export default function NavbarSearch() {
+export function NavbarSearch() {
   return (
     <div className='flex items-center justify-between relative'>
       <Input placeholder='Search...' />

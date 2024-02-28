@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 
 import { Container } from '../../page-container';
 import { NavbarToggle } from './navbar-toggle';
-import NavbarSearch from './navbar-search';
+import { NavbarSearch } from './navbar-search';
 import { Button } from '../../ui/button';
-import Logo from '../../logo';
 
 import search from '@/assets/search.svg';
 import { navLinks } from '@/lib/constants';
 import { listVariants, sideVariants } from '@/lib/framer-variants';
+import { Logo } from '@/components/Icons';
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = React.useState(false);

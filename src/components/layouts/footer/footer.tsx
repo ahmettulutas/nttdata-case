@@ -1,6 +1,6 @@
 import SignUp from './sign-up';
 
-import Logo from '@/components/logo';
+import { Logo } from '@/components/Icons';
 import { Container } from '@/components/page-container';
 import { contactInfos, socialLinks } from '@/lib/constants';
 

@@ -1,6 +1,10 @@
 export type Product = {
-  id: string;
-  title: string;
+  id: number;
+  description: string;
+  imageUrl: string;
+  name: string;
+  price: string;
+  shippingMethod: string;
 };
 
-export type ProductList = Array<Product>;
+export type ProductListRes = Array<Product>;
