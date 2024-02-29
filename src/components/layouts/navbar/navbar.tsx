@@ -1,8 +1,8 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { Container } from '../../page-container';
 import { NavbarToggle } from './navbar-toggle';
@@ -14,14 +14,15 @@ import { navLinks } from '@/lib/constants';
 import { listVariants, sideVariants } from '@/lib/framer-variants';
 import { Logo } from '@/components/Icons';
 
-export const Navbar: React.FC = () => {
-  const [scrolled, setScrolled] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+export const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const handleScroll = () => {
     if (window.scrollY > 70) setScrolled(true);
     else setScrolled(false);
   };
-  React.useEffect(() => {
+
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

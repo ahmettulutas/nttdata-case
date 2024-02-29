@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import * as React from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 
 import { DotIndicators } from './carousel-dots';
 
@@ -24,11 +24,12 @@ export type CarouselProps = (ImageCarousel | NodeCarousel) & {
 const Carousel: React.FC<CarouselProps> = (props) => {
   const { imageCarousel, loop, showDots, speed } = props;
 
-  const [current, setCurrent] = React.useState(0);
-  const [direction, setDirection] = React.useState(0);
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0);
   const items = imageCarousel ? props.images : props.carouselItems;
   const itemsCount = items.length;
-  const paginate = React.useCallback(
+
+  const paginate = useCallback(
     (newDirection: number) => {
       const newIndex = current + newDirection;
       // the newIndex stays within the bounds of the images array
@@ -43,7 +44,7 @@ const Carousel: React.FC<CarouselProps> = (props) => {
     setCurrent(number);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (loop) {
       const interval = setInterval(() => paginate(1), speed || 4000);
       return () => clearInterval(interval);
@@ -51,13 +52,13 @@ const Carousel: React.FC<CarouselProps> = (props) => {
   }, [paginate, loop, speed]);
 
   return (
-    <div className='relative aspect-square md:aspect-video flex justify-center items-center max-h-[75vh] w-full'>
+    <div className='relative w-full h-screen overflow-hidden'>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={current}
           custom={direction}
           variants={carouselVariants}
-          className='top-0 left-0 right-0 bottom-0 absolute'
+          className='absolute inset-0 flex justify-center items-center'
           initial='enter'
           animate='center'
           exit='exit'
@@ -67,16 +68,16 @@ const Carousel: React.FC<CarouselProps> = (props) => {
           }}
         >
           {imageCarousel ? (
-            <img className='w-full h-full' src={props.images[current]} />
+            <img className='object-cover w-full h-full' src={props.images[current]} />
           ) : (
             props.carouselItems[current]
           )}
         </motion.div>
       </AnimatePresence>
-      {showDots ? (
+      {showDots && (
         <DotIndicators numDots={itemsCount} currentSlide={current} onDotClick={handleDotClick} />
-      ) : null}
+      )}
     </div>
   );
 };
-export default React.memo(Carousel);
+export default memo(Carousel);

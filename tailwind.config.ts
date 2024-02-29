@@ -25,6 +25,7 @@ const config = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        textBrand: '#00254F',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -75,6 +76,9 @@ const config = {
       },
       gridTemplateColumns: {
         navbar: 'auto 1fr auto',
+      },
+      fontSize: {
+        '2xs': '0.625rem',
       },
     },
   },

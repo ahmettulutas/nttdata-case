@@ -5,7 +5,7 @@ import { ProductListRes } from './types';
 
 // Define a service using a base URL and expected endpoints
 export const productsApi = createApi({
-  reducerPath: 'pokemonApi',
+  reducerPath: 'productsApi',
   baseQuery: fetchBaseQuery({ baseUrl: apiEndpoints.base }),
   endpoints: (builder) => ({
     getProducts: builder.query<ProductListRes, void>({

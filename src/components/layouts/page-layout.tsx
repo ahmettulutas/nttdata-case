@@ -3,7 +3,7 @@ import Footer from './footer/footer';
 
 function PageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main style={{ display: 'grid', gridTemplateRows: '1fr auto', height: '100vh' }}>
+    <main className='grid h-screen pt-32'>
       <Navbar />
       {children}
       <Footer />
