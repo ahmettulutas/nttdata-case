@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import NoContent from './no-content';
 import ProductCard from './card/product-card';
 import { Button } from './ui/button';
 
-import { dummyproducts } from '@/lib/constants';
 import { ProductListRes } from '@/api/types';
+import { cardVariants } from '@/lib/framer-variants';
 
 const initialPageCount = 4;
 
@@ -21,11 +22,24 @@ function ProductList({ products }: { products: ProductListRes | undefined }) {
 
   return (
     <section className='flex flex-col'>
-      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2'>
-        {(products || dummyproducts).slice(0, paginate).map((product) => (
-          <ProductCard key={product.id} product={product} />
+      <motion.div
+        className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2'
+        variants={cardVariants}
+        initial='hidden'
+        animate='visible'
+      >
+        {products.slice(0, paginate).map((product) => (
+          <motion.div
+            key={product.id}
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <ProductCard product={product} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <Button
         className='mx-auto my-4'

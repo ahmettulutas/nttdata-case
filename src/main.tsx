@@ -6,13 +6,16 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import { store } from './store/index.ts';
 import RouteTree from './routes/route-tree.tsx';
+import ErrorBoundary from './components/error-boundary.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ReduxProvider store={store}>
-      <BrowserRouter>
-        <RouteTree />
-      </BrowserRouter>
-    </ReduxProvider>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <ReduxProvider store={store}>
+          <RouteTree />
+        </ReduxProvider>
+      </ErrorBoundary>
+    </BrowserRouter>
   </React.StrictMode>
 );
