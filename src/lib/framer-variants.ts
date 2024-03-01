@@ -18,13 +18,13 @@ export const listVariants = {
 export const sideVariants = {
   closed: {
     transition: {
-      staggerChildren: 0.07,
+      staggerChildren: 0.03,
       staggerDirection: -1,
     },
   },
   open: {
     transition: {
-      staggerChildren: 0.07,
+      staggerChildren: 0.03,
       staggerDirection: 1,
     },
   },

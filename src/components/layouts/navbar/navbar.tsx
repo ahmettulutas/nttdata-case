@@ -86,7 +86,6 @@ export const Navbar = () => {
                     className='mt-24'
                     initial='closed'
                     animate='open'
-                    exit='closed'
                     variants={sideVariants}
                   >
                     {navLinks.map(
