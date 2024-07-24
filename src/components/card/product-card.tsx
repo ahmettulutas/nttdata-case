@@ -20,7 +20,7 @@ function ProductCard({ product }: { product: Product }) {
       <h2 className='text-lg lg:text-xl font-semibold leading-5'>{product.name}</h2>
       <PriceTag price={product.price} />
       <p>Description</p>
-      <p className='text-xs font-light h-12'>{product.description}</p>
+      <p className='text-xs font-light line-clamp-4'>{product.description}</p>
       <span className='text-2xs text-black'>{product.shippingMethod}</span>
     </Link>
   );
